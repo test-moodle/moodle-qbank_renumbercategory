@@ -40,7 +40,7 @@ class local_renumberquestioncategory_question_category_object {
      * @param string $categorypluscontext
      * @param string $prefix
      */
-    public function renumber_category($categorypluscontext, $prefix) {
+    public function renumber_category($categorypluscontext, $prefix = '') {
         $parts = explode(',', $categorypluscontext);
         $categoryid = $parts[0];
         $contextid = $parts[1];
@@ -50,10 +50,11 @@ class local_renumberquestioncategory_question_category_object {
     }
 
     /**
-     * Sort category and all subcategories.
+     * Number category and all subcategories.
      *
      * @param int $categoryid
      * @param int $contextid
+     * @param string $prefix
      */
     private function renumber_category_recursive($categoryid, $contextid, $prefix = '') {
         global $DB;
@@ -72,4 +73,37 @@ class local_renumberquestioncategory_question_category_object {
             $sortorder++;
         }
     }
+
+    /**
+     * Remove numbers from category and all subcategories.
+     *
+     * @param string $categorypluscontext
+     */
+    public function unnumber_category($categorypluscontext) {
+        $parts = explode(',', $categorypluscontext);
+        $categoryid = $parts[0];
+        $contextid = $parts[1];
+        $context = context::instance_by_id($contextid);
+        require_capability('moodle/question:managecategory', $context);
+        $this->unnumber_category_recursive($categoryid, $contextid);
+    }
+
+    /**
+     * Remove numbers from category and all subcategories.
+     *
+     * @param int $categoryid
+     * @param int $contextid
+     */
+    private function unnumber_category_recursive($categoryid, $contextid) {
+        global $DB;
+
+        $subcategories = $DB->get_records('question_categories',
+                array('parent' => $categoryid, 'contextid' => $contextid));
+        foreach ($subcategories as $subcategory) {
+            $subcategory->name = ltrim($subcategory->name, '0123456789. ');
+            $DB->update_record('question_categories', $subcategory);
+            $this->unnumber_category_recursive($subcategory->id, $contextid);
+        }
+    }
+
 }

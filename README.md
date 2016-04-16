@@ -27,5 +27,5 @@ Links
 
 Changes
 -------
-Release 0.1 (build 2016041600):
+Release 0.9 (build 2016041601):
 - Initial release.

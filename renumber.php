@@ -54,7 +54,11 @@ if ($mform->is_cancelled()) {
 } else if ($data = $mform->get_data()) {
     require_sesskey();
     $qcobject = new local_renumberquestioncategory_question_category_object();
-    $qcobject->renumber_category($data->category, $data->prefix);
+    if (isset($data->renumber)) {
+        $qcobject->renumber_category($data->category, $data->prefix);
+    } else if (isset($data->removenumbering)) {
+        $qcobject->unnumber_category($data->category);
+    }
     redirect(new moodle_url('/question/category.php', $pageparams));
 }
 echo $OUTPUT->header();

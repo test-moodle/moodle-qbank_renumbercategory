@@ -25,6 +25,7 @@
 $string['pluginname'] = 'Renumber question categories';
 $string['renumbercategory'] = 'Renumber categories';
 $string['renumberthiscategory'] = 'Renumber this category';
+$string['removenumbering'] = 'Remove numbering';
 $string['selectcategory'] = 'Select category to renumber';
 $string['selectcategoryinfo'] = 'Specify category you want to renumber. All subcategories will be hierarchicaly renumbered. Select "Top" to number all categories in context. All existing digits, dots and spaces will be removed from the beginning of category names before adding new numbers.';
 $string['prefix'] = 'Prefix';

@@ -62,7 +62,15 @@ class local_renumberquestioncategory_renumber_form extends moodleform {
         $qcategory = $mform->addElement('text', 'prefix', get_string('prefix', 'local_renumberquestioncategory'));
         $mform->setType('prefix', PARAM_TEXT);
 
-        $this->add_action_buttons(true, get_string('renumberthiscategory', 'local_renumberquestioncategory'));
+        $buttonarray = array();
+        $classarray = array('class' => 'form-submit');
+        $buttonarray[] = &$mform->createElement('submit', 'renumber',
+                        get_string('renumberthiscategory', 'local_renumberquestioncategory'), $classarray);
+        $buttonarray[] = &$mform->createElement('submit', 'removenumbering',
+                        get_string('removenumbering', 'local_renumberquestioncategory'), $classarray);
+        $buttonarray[] = &$mform->createElement('cancel');
+        $mform->addGroup($buttonarray, 'buttonar', '', array(' '), false);
+        $mform->closeHeaderBefore('buttonar');
     }
 
     /**
