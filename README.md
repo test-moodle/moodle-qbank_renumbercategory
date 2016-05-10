@@ -29,3 +29,5 @@ Changes
 -------
 Release 0.9 (build 2016041601):
 - Initial release.
+Release 1.0 (build 2016051000):
+- Extra capability check.
