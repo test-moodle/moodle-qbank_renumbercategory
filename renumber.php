@@ -40,6 +40,7 @@ if ($cmid) {
     $PAGE->set_course($course);
     $context = context_course::instance($courseid);
 }
+require_capability('moodle/question:managecategory', $context);
 
 $PAGE->set_pagelayout('admin');
 $url = new moodle_url('/local/renumberquestioncategory/renumber.php', $pageparams);
