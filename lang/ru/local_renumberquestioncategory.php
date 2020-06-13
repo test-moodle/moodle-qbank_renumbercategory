@@ -23,6 +23,7 @@
  */
 
 $string['pluginname'] = 'Нумерация категорий вопросов';
+$string['privacy:metadata'] = 'Плагин не хранит персональные данные.';
 $string['renumbercategory'] = 'Нумерация категорий';
 $string['renumberthiscategory'] = 'Пронумеровать эту категорию';
 $string['removenumbering'] = 'Удалить нумерацию';

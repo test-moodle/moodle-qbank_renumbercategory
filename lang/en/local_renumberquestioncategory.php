@@ -23,6 +23,7 @@
  */
 
 $string['pluginname'] = 'Renumber question categories';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
 $string['renumbercategory'] = 'Renumber categories';
 $string['renumberthiscategory'] = 'Renumber this category';
 $string['removenumbering'] = 'Remove numbering';
