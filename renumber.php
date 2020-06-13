@@ -62,6 +62,15 @@ if ($mform->is_cancelled()) {
     }
     redirect(new moodle_url('/question/category.php', $pageparams));
 }
+
 echo $OUTPUT->header();
+
+if ($CFG->version >= 2016120503.00) { // Moodle 3.2.3.
+    // Print horizontal nav if needed.
+    $renderer = $PAGE->get_renderer('core_question', 'bank');
+    echo $renderer->extra_horizontal_navigation();
+}
+
+echo $OUTPUT->heading(get_string('renumbercategory', 'local_renumberquestioncategory'));
 $mform->display();
 echo $OUTPUT->footer();
