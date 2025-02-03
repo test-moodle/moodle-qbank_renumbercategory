@@ -61,9 +61,9 @@ class renumber_form extends moodleform {
         $options = [];
         $options['contexts'] = $contexts;
         $options['top'] = true;
-        $qcategory = $mform->addElement('questioncategory', 'category', get_string('category', 'question'), $options);
+        $mform->addElement('questioncategory', 'category', get_string('category', 'question'), $options);
 
-        $qcategory = $mform->addElement('text', 'prefix', get_string('prefix', 'qbank_renumbercategory'));
+        $mform->addElement('text', 'prefix', get_string('prefix', 'qbank_renumbercategory'));
         $mform->setType('prefix', PARAM_TEXT);
 
         $buttonarray = [];
