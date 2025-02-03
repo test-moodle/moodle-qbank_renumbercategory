@@ -7,7 +7,7 @@ Requirements
 
 Installation
 ------------
-Copy the renumberquestioncategory folder into your Moodle /local directory and visit your Admin Notification page to complete the installation.
+Copy the renumbercategory folder into your Moodle /question/bank directory and visit your Admin Notification page to complete the installation.
 
 Usage
 -----
