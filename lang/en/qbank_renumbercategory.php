@@ -23,11 +23,11 @@
  */
 
 $string['pluginname'] = 'Renumber question categories';
-$string['privacy:metadata'] = 'The plugin does not store any personal data.';
-$string['renumbercategory'] = 'Renumber categories';
-$string['renumberthiscategory'] = 'Renumber this category';
-$string['removenumbering'] = 'Remove numbering';
-$string['selectcategory'] = 'Select category to renumber';
-$string['selectcategoryinfo'] = 'Specify category you want to renumber. All subcategories will be hierarchicaly renumbered. Select "Top" to number all categories in context. All existing digits, dots and spaces will be removed from the beginning of category names before adding new numbers.';
 $string['prefix'] = 'Prefix';
 $string['prefixerror'] = 'Prefix may contain only digits and dots';
+$string['privacy:metadata'] = 'The plugin does not store any personal data.';
+$string['removenumbering'] = 'Remove numbering';
+$string['renumbercategory'] = 'Renumber categories';
+$string['renumberthiscategory'] = 'Renumber this category';
+$string['selectcategory'] = 'Select category to renumber';
+$string['selectcategoryinfo'] = 'Specify category you want to renumber. All subcategories will be hierarchicaly renumbered. Select "Top" to number all categories in context. All existing digits, dots and spaces will be removed from the beginning of category names before adding new numbers.';
