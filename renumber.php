@@ -17,7 +17,7 @@
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -45,16 +45,16 @@ require_capability('moodle/question:managecategory', $context);
 $PAGE->set_pagelayout('admin');
 $url = new moodle_url('/local/renumberquestioncategory/renumber.php', $pageparams);
 $PAGE->set_url($url);
-$PAGE->set_title(get_string('selectcategory', 'local_renumberquestioncategory'));
+$PAGE->set_title(get_string('selectcategory', 'qbank_renumbercategory'));
 $PAGE->set_heading($COURSE->fullname);
 
-$mform = new local_renumberquestioncategory_renumber_form($url, array('context' => $context));
+$mform = new qbank_renumbercategory_renumber_form($url, array('context' => $context));
 
 if ($mform->is_cancelled()) {
     redirect(new moodle_url('/question/category.php', $pageparams));
 } else if ($data = $mform->get_data()) {
     require_sesskey();
-    $qcobject = new local_renumberquestioncategory_question_category_object();
+    $qcobject = new qbank_renumbercategory_question_category_object();
     if (isset($data->renumber)) {
         $qcobject->renumber_category($data->category, $data->prefix);
     } else if (isset($data->removenumbering)) {
@@ -71,6 +71,6 @@ if ($CFG->version >= 2016120503.00) { // Moodle 3.2.3.
     echo $renderer->extra_horizontal_navigation();
 }
 
-echo $OUTPUT->heading(get_string('renumbercategory', 'local_renumberquestioncategory'));
+echo $OUTPUT->heading(get_string('renumbercategory', 'qbank_renumbercategory'));
 $mform->display();
 echo $OUTPUT->footer();

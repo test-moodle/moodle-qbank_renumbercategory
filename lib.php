@@ -17,7 +17,7 @@
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -31,9 +31,9 @@ defined('MOODLE_INTERNAL') || die();
  * @param stdClass $course frontpage course object
  * @param context $context frontpage course context object
  */
-function local_renumberquestioncategory_extend_navigation_frontpage(navigation_node $coursenode, stdClass $course,
+function qbank_renumbercategory_extend_navigation_frontpage(navigation_node $coursenode, stdClass $course,
         context $context) {
-    local_renumberquestioncategory_extend_navigation_course($coursenode, $course, $context);
+    qbank_renumbercategory_extend_navigation_course($coursenode, $course, $context);
 }
 
 /**
@@ -43,7 +43,7 @@ function local_renumberquestioncategory_extend_navigation_frontpage(navigation_n
  * @param stdClass $course course object
  * @param context $context course context object
  */
-function local_renumberquestioncategory_extend_navigation_course(navigation_node $coursenode, stdClass $course,
+function qbank_renumbercategory_extend_navigation_course(navigation_node $coursenode, stdClass $course,
         context $context) {
     if (!has_capability('moodle/question:managecategory', $context)) {
         return;
@@ -59,7 +59,7 @@ function local_renumberquestioncategory_extend_navigation_course(navigation_node
         return;
     }
     $url = new moodle_url('/local/renumberquestioncategory/renumber.php', array('courseid' => $context->instanceid));
-    $questionbank->add(get_string('renumbercategory', 'local_renumberquestioncategory'), $url, navigation_node::TYPE_SETTING,
+    $questionbank->add(get_string('renumbercategory', 'qbank_renumbercategory'), $url, navigation_node::TYPE_SETTING,
             null, 'renumberquestioncategory');
 }
 
@@ -69,7 +69,7 @@ function local_renumberquestioncategory_extend_navigation_course(navigation_node
  * @param navigation_node $nav navigation node object
  * @param context $context course context object
  */
-function local_renumberquestioncategory_extend_settings_navigation(navigation_node $nav, context $context) {
+function qbank_renumbercategory_extend_settings_navigation(navigation_node $nav, context $context) {
     if (!has_capability('moodle/question:managecategory', $context)) {
         return;
     }
@@ -88,6 +88,6 @@ function local_renumberquestioncategory_extend_settings_navigation(navigation_no
         return;
     }
     $url = new moodle_url('/local/renumberquestioncategory/renumber.php', array('cmid' => $context->instanceid));
-    $questionbank->add(get_string('renumbercategory', 'local_renumberquestioncategory'), $url, navigation_node::TYPE_SETTING,
+    $questionbank->add(get_string('renumbercategory', 'qbank_renumbercategory'), $url, navigation_node::TYPE_SETTING,
             null, 'renumberquestioncategory');
 }

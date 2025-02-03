@@ -22,8 +22,8 @@ Author
 
 Links
 -----
-- Updates: https://moodle.org/plugins/view.php?plugin=local_renumberquestioncategory
-- Latest code: https://github.com/vadimonus/moodle-local_renumberquestioncategory
+- Updates: https://moodle.org/plugins/view.php?plugin=qbank_renumbercategory
+- Latest code: https://github.com/vadimonus/moodle-qbank_renumbercategory
 
 Changes
 -------

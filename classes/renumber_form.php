@@ -17,7 +17,7 @@
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
@@ -29,11 +29,11 @@ require_once($CFG->libdir . '/formslib.php');
 /**
  * Form for selecting category to renumber.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class local_renumberquestioncategory_renumber_form extends moodleform {
+class qbank_renumbercategory_renumber_form extends moodleform {
 
     /**
      * Form definition.
@@ -45,9 +45,9 @@ class local_renumberquestioncategory_renumber_form extends moodleform {
 
         $context = $this->_customdata['context'];
 
-        $mform->addElement('header', 'header', get_string('selectcategory', 'local_renumberquestioncategory'));
+        $mform->addElement('header', 'header', get_string('selectcategory', 'qbank_renumbercategory'));
 
-        $message = $OUTPUT->box(get_string('selectcategoryinfo', 'local_renumberquestioncategory'), 'generalbox boxaligncenter');
+        $message = $OUTPUT->box(get_string('selectcategoryinfo', 'qbank_renumbercategory'), 'generalbox boxaligncenter');
         $mform->addElement('html', $message);
 
         $qcontexts = new question_edit_contexts($context);
@@ -58,15 +58,15 @@ class local_renumberquestioncategory_renumber_form extends moodleform {
         $options['top'] = true;
         $qcategory = $mform->addElement('questioncategory', 'category', get_string('category', 'question'), $options);
 
-        $qcategory = $mform->addElement('text', 'prefix', get_string('prefix', 'local_renumberquestioncategory'));
+        $qcategory = $mform->addElement('text', 'prefix', get_string('prefix', 'qbank_renumbercategory'));
         $mform->setType('prefix', PARAM_TEXT);
 
         $buttonarray = array();
         $classarray = array('class' => 'form-submit');
         $buttonarray[] = &$mform->createElement('submit', 'renumber',
-                        get_string('renumberthiscategory', 'local_renumberquestioncategory'), $classarray);
+                        get_string('renumberthiscategory', 'qbank_renumbercategory'), $classarray);
         $buttonarray[] = &$mform->createElement('submit', 'removenumbering',
-                        get_string('removenumbering', 'local_renumberquestioncategory'), $classarray);
+                        get_string('removenumbering', 'qbank_renumbercategory'), $classarray);
         $buttonarray[] = &$mform->createElement('cancel');
         $mform->addGroup($buttonarray, 'buttonar', '', array(' '), false);
         $mform->closeHeaderBefore('buttonar');
@@ -85,7 +85,7 @@ class local_renumberquestioncategory_renumber_form extends moodleform {
         $prefix = $data['prefix'];
 
         if (preg_match('/^[0-9.]*$/', $prefix) === 0) {
-            $errors['prefix'] = get_string('prefixerror', 'local_renumberquestioncategory');;
+            $errors['prefix'] = get_string('prefixerror', 'qbank_renumbercategory');;
         }
 
         return $errors;

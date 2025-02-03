@@ -17,14 +17,14 @@
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
 defined('MOODLE_INTERNAL') || die();
 
-$plugin->component = 'local_renumberquestioncategory';
+$plugin->component = 'qbank_renumbercategory';
 $plugin->version   = 2020061300;
 $plugin->release = '1.1';
 $plugin->maturity = MATURITY_STABLE;

@@ -17,19 +17,19 @@
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2020 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_renumberquestioncategory\privacy;
+namespace qbank_renumbercategory\privacy;
 
 defined('MOODLE_INTERNAL') || die();
 
 /**
  * Tool for hierarchical numbering of question categories.
  *
- * @package    local_renumberquestioncategory
+ * @package    qbank_renumbercategory
  * @copyright  2020 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
