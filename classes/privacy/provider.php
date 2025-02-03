@@ -24,8 +24,6 @@
 
 namespace qbank_renumbercategory\privacy;
 
-defined('MOODLE_INTERNAL') || die();
-
 /**
  * Tool for hierarchical numbering of question categories.
  *
