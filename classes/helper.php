@@ -24,8 +24,6 @@
 
 namespace qbank_renumbercategory;
 
-defined('MOODLE_INTERNAL') || die();
-
 use context;
 
 /**
@@ -35,7 +33,7 @@ use context;
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class question_category_object {
+class helper {
 
     /**
      * Number category and all subcategories.
@@ -43,13 +41,13 @@ class question_category_object {
      * @param string $categorypluscontext
      * @param string $prefix
      */
-    public function renumber_category($categorypluscontext, $prefix = '') {
+    public static function renumber_category($categorypluscontext, $prefix = '') {
         $parts = explode(',', $categorypluscontext);
         $categoryid = $parts[0];
         $contextid = $parts[1];
         $context = context::instance_by_id($contextid);
         require_capability('moodle/question:managecategory', $context);
-        $this->renumber_category_recursive($categoryid, $contextid, $prefix);
+        static::renumber_category_recursive($categoryid, $contextid, $prefix);
     }
 
     /**
@@ -59,7 +57,7 @@ class question_category_object {
      * @param int $contextid
      * @param string $prefix
      */
-    private function renumber_category_recursive($categoryid, $contextid, $prefix = '') {
+    private static function renumber_category_recursive($categoryid, $contextid, $prefix = '') {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
@@ -72,7 +70,7 @@ class question_category_object {
             $subcategory->name = ltrim($subcategory->name, '0123456789. ');
             $subcategory->name = $newprefix . ' ' . $subcategory->name;
             $DB->update_record('question_categories', $subcategory);
-            $this->renumber_category_recursive($subcategory->id, $contextid, $newprefix);
+            static::renumber_category_recursive($subcategory->id, $contextid, $newprefix);
             $sortorder++;
         }
     }
@@ -82,13 +80,13 @@ class question_category_object {
      *
      * @param string $categorypluscontext
      */
-    public function unnumber_category($categorypluscontext) {
+    public static function unnumber_category($categorypluscontext) {
         $parts = explode(',', $categorypluscontext);
         $categoryid = $parts[0];
         $contextid = $parts[1];
         $context = context::instance_by_id($contextid);
         require_capability('moodle/question:managecategory', $context);
-        $this->unnumber_category_recursive($categoryid, $contextid);
+        static::unnumber_category_recursive($categoryid, $contextid);
     }
 
     /**
@@ -97,7 +95,7 @@ class question_category_object {
      * @param int $categoryid
      * @param int $contextid
      */
-    private function unnumber_category_recursive($categoryid, $contextid) {
+    private static function unnumber_category_recursive($categoryid, $contextid) {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
@@ -105,7 +103,7 @@ class question_category_object {
         foreach ($subcategories as $subcategory) {
             $subcategory->name = ltrim($subcategory->name, '0123456789. ');
             $DB->update_record('question_categories', $subcategory);
-            $this->unnumber_category_recursive($subcategory->id, $contextid);
+            static::unnumber_category_recursive($subcategory->id, $contextid);
         }
     }
 
