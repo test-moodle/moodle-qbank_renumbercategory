@@ -26,6 +26,7 @@ $string['pluginname'] = 'Renumber question categories';
 $string['prefix'] = 'Prefix';
 $string['prefixerror'] = 'Prefix may contain only digits and dots';
 $string['privacy:metadata'] = 'The plugin does not store any personal data.';
+$string['qbankrenumbercategory'] = 'Question bank: Renumber categories';
 $string['removenumbering'] = 'Remove numbering';
 $string['renumbercategory'] = 'Renumber categories';
 $string['renumberthiscategory'] = 'Renumber this category';

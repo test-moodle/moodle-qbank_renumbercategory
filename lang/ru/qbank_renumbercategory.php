@@ -26,6 +26,7 @@ $string['pluginname'] = 'Нумерация категорий вопросов'
 $string['prefix'] = 'Префикс';
 $string['prefixerror'] = 'Префикс может содержать только цифры и точки';
 $string['privacy:metadata'] = 'Плагин не хранит персональные данные.';
+$string['qbankrenumbercategory'] = 'Банк вопросов: Нумерация категорий';
 $string['removenumbering'] = 'Удалить нумерацию';
 $string['renumbercategory'] = 'Нумерация категорий';
 $string['renumberthiscategory'] = 'Пронумеровать эту категорию';
