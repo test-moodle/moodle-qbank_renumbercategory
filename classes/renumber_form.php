@@ -22,9 +22,14 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qbank_renumbercategory;
+
 defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->libdir . '/formslib.php');
+
+use moodleform;
+use core_question\local\bank\question_edit_contexts;
 
 /**
  * Form for selecting category to renumber.
@@ -33,7 +38,7 @@ require_once($CFG->libdir . '/formslib.php');
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qbank_renumbercategory_renumber_form extends moodleform {
+class renumber_form extends moodleform {
 
     /**
      * Form definition.

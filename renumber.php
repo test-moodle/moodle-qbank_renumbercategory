@@ -27,6 +27,8 @@ require_once("$CFG->dirroot/question/editlib.php");
 
 use core_question\local\bank\helper as core_question_local_bank_helper;
 use core_question\output\qbank_action_menu;
+use qbank_renumbercategory\renumber_form;
+use qbank_renumbercategory\question_category_object;
 
 require_login();
 core_question_local_bank_helper::require_plugin_enabled('qbank_renumbercategory');
@@ -54,13 +56,13 @@ $PAGE->set_url($url);
 $PAGE->set_title(get_string('selectcategory', 'qbank_renumbercategory'));
 $PAGE->set_heading($COURSE->fullname);
 
-$mform = new qbank_renumbercategory_renumber_form($url, ['context' => $context]);
+$mform = new renumber_form($url, ['context' => $context]);
 
 if ($mform->is_cancelled()) {
     redirect(new moodle_url('/question/category.php', $pageparams));
 } else if ($data = $mform->get_data()) {
     require_sesskey();
-    $qcobject = new qbank_renumbercategory_question_category_object();
+    $qcobject = new question_category_object();
     if (isset($data->renumber)) {
         $qcobject->renumber_category($data->category, $data->prefix);
     } else if (isset($data->removenumbering)) {

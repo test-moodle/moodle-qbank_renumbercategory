@@ -22,10 +22,11 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+namespace qbank_renumbercategory;
+
 defined('MOODLE_INTERNAL') || die();
 
-require_once("$CFG->dirroot/question/category_class.php");
-require_once("$CFG->dirroot/lib/questionlib.php");
+use context;
 
 /**
  * Class representing custom question category
@@ -34,7 +35,7 @@ require_once("$CFG->dirroot/lib/questionlib.php");
  * @copyright  2016 Vadim Dvorovenko <Vadimon@mail.ru>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
-class qbank_renumbercategory_question_category_object {
+class question_category_object {
 
     /**
      * Number category and all subcategories.
