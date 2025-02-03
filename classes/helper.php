@@ -25,6 +25,7 @@
 namespace qbank_renumbercategory;
 
 use context;
+use core\event\question_category_updated;
 
 /**
  * Class representing custom question category
@@ -41,36 +42,42 @@ class helper {
      * @param string $categorypluscontext
      * @param string $prefix
      */
-    public static function renumber_category($categorypluscontext, $prefix = '') {
+    public static function renumber_category(string $categorypluscontext, string $prefix = '') {
         $parts = explode(',', $categorypluscontext);
         $categoryid = $parts[0];
         $contextid = $parts[1];
         $context = context::instance_by_id($contextid);
         require_capability('moodle/question:managecategory', $context);
-        static::renumber_category_recursive($categoryid, $contextid, $prefix);
+        static::renumber_category_recursive($categoryid, $context, $prefix);
     }
 
     /**
      * Number category and all subcategories.
      *
      * @param int $categoryid
-     * @param int $contextid
+     * @param context $context
      * @param string $prefix
      */
-    private static function renumber_category_recursive($categoryid, $contextid, $prefix = '') {
+    private static function renumber_category_recursive(int $categoryid, context $context, string $prefix = '') {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
-                ['parent' => $categoryid, 'contextid' => $contextid], 'sortorder ASC, name ASC');
+                ['parent' => $categoryid, 'contextid' => $context->id], 'sortorder ASC, name ASC');
         $significantdigits = floor(log(count($subcategories), 10)) + 1;
         $sortorder = 1;
         foreach ($subcategories as $subcategory) {
             $sortorderstring = (string) $sortorder;
             $newprefix = $prefix . str_pad($sortorderstring, $significantdigits, '0', STR_PAD_LEFT) . '.';
-            $subcategory->name = ltrim($subcategory->name, '0123456789. ');
-            $subcategory->name = $newprefix . ' ' . $subcategory->name;
+            $newcategoryname = ltrim($subcategory->name, '0123456789. ');
+            $newcategoryname = $newprefix . ' ' . $newcategoryname;
             $DB->update_record('question_categories', $subcategory);
-            static::renumber_category_recursive($subcategory->id, $contextid, $newprefix);
+            if ($subcategory->name != $newcategoryname) {
+                $subcategory->name = $newcategoryname;
+                $DB->update_record('question_categories', $subcategory);
+                $event = question_category_updated::create_from_question_category_instance($subcategory, $context);
+                $event->trigger();
+            }
+            static::renumber_category_recursive($subcategory->id, $context, $newprefix);
             $sortorder++;
         }
     }
@@ -80,13 +87,13 @@ class helper {
      *
      * @param string $categorypluscontext
      */
-    public static function unnumber_category($categorypluscontext) {
+    public static function unnumber_category(string $categorypluscontext) {
         $parts = explode(',', $categorypluscontext);
         $categoryid = $parts[0];
         $contextid = $parts[1];
         $context = context::instance_by_id($contextid);
         require_capability('moodle/question:managecategory', $context);
-        static::unnumber_category_recursive($categoryid, $contextid);
+        static::unnumber_category_recursive($categoryid, $context);
     }
 
     /**
@@ -95,15 +102,20 @@ class helper {
      * @param int $categoryid
      * @param int $contextid
      */
-    private static function unnumber_category_recursive($categoryid, $contextid) {
+    private static function unnumber_category_recursive(int $categoryid, context $context) {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
-                ['parent' => $categoryid, 'contextid' => $contextid]);
+                ['parent' => $categoryid, 'contextid' => $context->id]);
         foreach ($subcategories as $subcategory) {
-            $subcategory->name = ltrim($subcategory->name, '0123456789. ');
-            $DB->update_record('question_categories', $subcategory);
-            static::unnumber_category_recursive($subcategory->id, $contextid);
+            $newcategoryname = ltrim($subcategory->name, '0123456789. ');
+            if ($subcategory->name != $newcategoryname) {
+                $subcategory->name = $newcategoryname;
+                $DB->update_record('question_categories', $subcategory);
+                $event = question_category_updated::create_from_question_category_instance($subcategory, $context);
+                $event->trigger();
+            }
+            static::unnumber_category_recursive($subcategory->id, $context);
         }
     }
 
