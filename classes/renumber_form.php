@@ -53,7 +53,7 @@ class qbank_renumbercategory_renumber_form extends moodleform {
         $qcontexts = new question_edit_contexts($context);
         $contexts = $qcontexts->having_cap('moodle/question:managecategory');
 
-        $options = array();
+        $options = [];
         $options['contexts'] = $contexts;
         $options['top'] = true;
         $qcategory = $mform->addElement('questioncategory', 'category', get_string('category', 'question'), $options);
@@ -61,14 +61,14 @@ class qbank_renumbercategory_renumber_form extends moodleform {
         $qcategory = $mform->addElement('text', 'prefix', get_string('prefix', 'qbank_renumbercategory'));
         $mform->setType('prefix', PARAM_TEXT);
 
-        $buttonarray = array();
-        $classarray = array('class' => 'form-submit');
+        $buttonarray = [];
+        $classarray = ['class' => 'form-submit'];
         $buttonarray[] = &$mform->createElement('submit', 'renumber',
                         get_string('renumberthiscategory', 'qbank_renumbercategory'), $classarray);
         $buttonarray[] = &$mform->createElement('submit', 'removenumbering',
                         get_string('removenumbering', 'qbank_renumbercategory'), $classarray);
         $buttonarray[] = &$mform->createElement('cancel');
-        $mform->addGroup($buttonarray, 'buttonar', '', array(' '), false);
+        $mform->addGroup($buttonarray, 'buttonar', '', [' '], false);
         $mform->closeHeaderBefore('buttonar');
     }
 
@@ -85,7 +85,7 @@ class qbank_renumbercategory_renumber_form extends moodleform {
         $prefix = $data['prefix'];
 
         if (preg_match('/^[0-9.]*$/', $prefix) === 0) {
-            $errors['prefix'] = get_string('prefixerror', 'qbank_renumbercategory');;
+            $errors['prefix'] = get_string('prefixerror', 'qbank_renumbercategory');
         }
 
         return $errors;

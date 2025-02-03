@@ -62,7 +62,7 @@ class qbank_renumbercategory_question_category_object {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
-                array('parent' => $categoryid, 'contextid' => $contextid), 'sortorder ASC, name ASC');
+                ['parent' => $categoryid, 'contextid' => $contextid], 'sortorder ASC, name ASC');
         $significantdigits = floor(log(count($subcategories), 10)) + 1;
         $sortorder = 1;
         foreach ($subcategories as $subcategory) {
@@ -100,7 +100,7 @@ class qbank_renumbercategory_question_category_object {
         global $DB;
 
         $subcategories = $DB->get_records('question_categories',
-                array('parent' => $categoryid, 'contextid' => $contextid));
+                ['parent' => $categoryid, 'contextid' => $contextid]);
         foreach ($subcategories as $subcategory) {
             $subcategory->name = ltrim($subcategory->name, '0123456789. ');
             $DB->update_record('question_categories', $subcategory);
