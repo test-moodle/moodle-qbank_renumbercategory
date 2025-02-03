@@ -3,7 +3,7 @@ Resort question categories Moodle plugin
 
 Requirements
 ------------
-- Moodle 3.0 (build 2015111600) or later.
+- Moodle 4.0 (build 2022041900) or later.
 
 Installation
 ------------
@@ -13,7 +13,7 @@ Usage
 -----
 Question bank navigation node will be extended with "Number categories" item. Select category you want to renumber. All subcategories will
 be hierarchicaly renumbered depending of current categories order. All previous numbering will be removed. If you want to renumber subcategory, 
-you may specify number prefix. This plugin may be useful to manage large question bank together with local_resortquestioncategory 
+you may specify number prefix. This plugin may be useful to manage large question bank together with qbank_resortcategory 
 plugin.
 
 Author
@@ -34,3 +34,7 @@ Changes
 - Release 1.1 (build 2020061300):
     - Privacy API support.
     - Question bank tabs.
+- Release 2.0 (build 2025020400)
+    - Renamed from local_renumberquestioncategory to qbank_renumbercategory.
+    - Refactored for Moodle 4 question bank changes.
+    - Renaming category fires event and is logged.

@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qbank_renumbercategory';
-$plugin->version   = 2020061300;
-$plugin->release = '1.1';
+$plugin->version   = 2025020400;
+$plugin->release = '2.0';
 $plugin->maturity = MATURITY_STABLE;
-$plugin->requires  = 2015111600; // Moodle 3.0.
+$plugin->requires  = 2022041900; // Moodle 4.0.
