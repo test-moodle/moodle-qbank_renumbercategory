@@ -43,7 +43,7 @@ if ($cmid) {
 require_capability('moodle/question:managecategory', $context);
 
 $PAGE->set_pagelayout('admin');
-$url = new moodle_url('/local/renumberquestioncategory/renumber.php', $pageparams);
+$url = new moodle_url('/question/bank/renumbercategory/renumber.php', $pageparams);
 $PAGE->set_url($url);
 $PAGE->set_title(get_string('selectcategory', 'qbank_renumbercategory'));
 $PAGE->set_heading($COURSE->fullname);

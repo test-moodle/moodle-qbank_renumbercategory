@@ -58,7 +58,7 @@ function qbank_renumbercategory_extend_navigation_course(navigation_node $course
     if (!$questionbank) {
         return;
     }
-    $url = new moodle_url('/local/renumberquestioncategory/renumber.php', array('courseid' => $context->instanceid));
+    $url = new moodle_url('/question/bank/renumbercategory/renumber.php', array('courseid' => $context->instanceid));
     $questionbank->add(get_string('renumbercategory', 'qbank_renumbercategory'), $url, navigation_node::TYPE_SETTING,
             null, 'renumberquestioncategory');
 }
@@ -87,7 +87,7 @@ function qbank_renumbercategory_extend_settings_navigation(navigation_node $nav,
     if (!$questionbank) {
         return;
     }
-    $url = new moodle_url('/local/renumberquestioncategory/renumber.php', array('cmid' => $context->instanceid));
+    $url = new moodle_url('/question/bank/renumbercategory/renumber.php', array('cmid' => $context->instanceid));
     $questionbank->add(get_string('renumbercategory', 'qbank_renumbercategory'), $url, navigation_node::TYPE_SETTING,
             null, 'renumberquestioncategory');
 }
