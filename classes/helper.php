@@ -100,7 +100,7 @@ class helper {
      * Remove numbers from category and all subcategories.
      *
      * @param int $categoryid
-     * @param int $contextid
+     * @param context $context
      */
     private static function unnumber_category_recursive(int $categoryid, context $context) {
         global $DB;
