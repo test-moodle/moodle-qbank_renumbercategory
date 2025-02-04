@@ -34,7 +34,7 @@ Changes
 - Release 1.1 (build 2020061300):
     - Privacy API support.
     - Question bank tabs.
-- Release 2.0 (build 2025020400)
+- Release 2.0 (build 2025020401)
     - Renamed from local_renumberquestioncategory to qbank_renumbercategory.
     - Refactored for Moodle 4 question bank changes.
     - Renaming category fires event and is logged.
